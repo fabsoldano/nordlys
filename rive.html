@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rive Embed</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="riveCanvas"></canvas>
+
+  <script type="module">
+    import riveModule from "https://unpkg.com/@rive-app/webgl2?module";
+
+    const canvas = document.getElementById("riveCanvas");
+
+    const riveInstance = new riveModule.Rive({
+      src: "https://fabsoldano.github.io/nordlys/prova.riv", // usa il tuo .riv corretto
+      canvas: canvas,
+      autoplay: true,
+      stateMachines: ["State Machine 1"],
+      layout: new riveModule.Layout({
+        fit: riveModule.Fit.Contain,
+        alignment: riveModule.Alignment.Center,
+      }),
+      onLoad: () => {
+        riveInstance.resizeDrawingSurfaceToCanvas(); // fix per retina/pixel
+      },
+    });
+  </script>
+</body>
+</html>
